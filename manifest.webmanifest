@@ -1,0 +1,16 @@
+{
+	"background_color": "#ff79a1",
+	"description": "Augment your keyboard with the symbols you need to type in your language.",
+	"display": "fullscreen",
+	"icons": [
+		{
+			"src": "/icons/tung.svg",
+			"sizes": "any",
+			"type": "image/svg+xml",
+			"purpose": "any"
+		}
+	],
+	"name": "tung-tap.app",
+	"short_name": "tung-tap",
+	"start_url": "/index.html"
+}

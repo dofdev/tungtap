@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html class="notranslate" translate="no">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="interactive-widget=resizes-content, width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="google" content="notranslate" />
+
+		<link rel="apple-touch-icon" sizes="180x180" href="icons/tung.svg">
+		<link rel="icon" type="image/svg+xml" sizes="any" href="icons/tung.svg">
+		<link rel="manifest" href="manifest.webmanifest">
+		<meta name="description" content="Augment your keyboard with the symbols you need to type in your language.">
+		<meta name="author" content="Ethan Merchant">
+		<title style="display: none;">tung-tap</title>
+		<link rel="stylesheet" href="style.css?v1">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+		<script src="script.js"></script>
+	</head>
+
+	<body>
+		
+		<!-- <div id="home" style="
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 10px;
+			padding: 10px 20px;
+			padding-top: 20px;
+			background-color: #79394f;
+		">
+			<div style="
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				gap: 10px;
+			">
+				<img src="icons/tongue.png" style="
+					width: 32px; height: 32px;
+					transform: translateY(-5px) rotate(-5deg);
+				">
+				<img src="icons/tap.png" style="
+					width: 32px; height: 32px;
+					margin-right: -40px;
+					transform: translate(-32px, 7px) rotate(-45deg) scale(0.8);
+				">
+				<h1 style="font-weight: unset; font-size: 24px; line-height: 24px; margin: 0; color: #fff">
+					TongueTap<span style="font-size: 14px; letter-spacing: 1px;">.app</span>
+				</h1>
+			</div>
+			<p style="
+				font-size: 14px; 
+				line-height: 24px; 
+				font-style: italic; 
+				margin: 0; 
+				color: #fff;
+			">
+				Unicode key-swatch webapp for any cultures tongue!
+			</p>
+		</div> -->
+
+		<div style="display: block; position: relative; background-color: white;">
+			<div hidden="true" id="tung" onclick="layout()" oninput="layout()" contenteditable="true" spellcheck="false" style="
+  			user-select: text;
+  			touch-action: none;
+				overflow: none;
+
+
+				white-space: pre;
+				width: auto;
+				height: 100px;
+				padding: 10px;
+				font-family: 'DM Mono', monospace;
+				text-align: center;
+				font-size: 12px;
+				line-height: 20px;
+				background-color: #ff79a1;
+				color: #79394f;
+
+
+
+				/* display: none; */
+			"></div>
+			<div onclick="copyToClipboard('#tung')" style="
+				cursor: pointer;
+				user-select: none;
+				position: absolute;
+				right: 10px;
+				bottom: 10px;
+			"><img class="icon-btn" src="icons/copy.svg" style="mix-blend-mode: difference;"></div>
+		</div>
+		
+		<div style="
+			position: relative;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			width: 40px; height: 40px;
+			margin: 0 auto;
+			margin-right: 80px;
+			width: 100%;
+			/* background-color: #eb8bb3; */
+			background-color: #ff79a1c0;
+			color: white;
+			user-select: none;
+			line-height: 40px;
+		">
+			<img onclick="$('#nav').toggle()" class="icon-btn" src="icons/tungs.svg">
+			<img onclick="TopToggle()" class="icon-btn" src="icons/tung.svg">
+		</div>
+
+		
+		<div style="flex-grow: 1; overflow: hidden; position: relative; background-color: white;">
+			<div id="text" onclick="$('#text').focus()" contenteditable="true" spellcheck="false" style="
+  			user-select: text;
+			  touch-action: pan-y;
+				overflow-y: scroll;
+				overscroll-behavior: contain;
+				
+
+				white-space: pre-wrap;
+				display: block;
+				position: absolute;
+				top: 0; left: 0; right: 0; bottom: 0;
+				padding: 10px;
+				font-size: 14px;
+				line-height: 20px;
+				background-color: rgb(var(--field));
+				color: rgb(var(--txt));
+
+
+
+				/* padding-bottom: 600px; */
+			"></div>
+			<div onclick="copyToClipboard('#text')" style="
+				cursor: pointer;
+				user-select: none;
+				position: absolute;
+				right: 10px;
+				bottom: 10px;
+			">
+				<img class="icon-btn" src="icons/copy.svg" style="mix-blend-mode: difference;">
+			</div>
+		</div>
+		
+		<div id="nav" hidden="true"></div>
+		
+		
+		<div id="keyboard" onclick="$('#text').focus()"></div>
+		
+	</body>
+	</html>
+	
+	
+<!-- 
+		
+	TODO
+		migrate to textareas
+			contenteditable divs are a can of worms 
+			esp. when it comes to conistent behaviour across devices
+		
+		spellcheck toggle~
+
+
+ -->
