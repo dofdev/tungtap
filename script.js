@@ -49,6 +49,23 @@ $(document).ready(() => {
   //   console.log(e.keyCode)
   // });
 
+  let ua = navigator.userAgent.toLowerCase()
+  let safari = ua.indexOf('safari') != -1 && ua.indexOf('chrome') == -1
+  $('#disclaimer').toggle(safari)
+
+  // dev toggle override
+  // safari = !safari
+
+  $('html').css('--bg', safari ? '214, 216, 221' : '16, 16, 16')
+  $('html').css('--fg', safari ? '214, 216, 221' : '240, 240, 240')
+  $('html').css('--key', safari ? '255, 255, 255' : '48, 48, 48')
+  $('html').css('--key-height', safari ? '40px' : '48px')
+  $('html').css('--key-radius', safari ? '5px' : '8px')
+  $('html').css('--txt', safari ? '0, 0, 0' : '255, 255, 255')
+  $('html').css('--txt-size', safari ? '22px' : '26px')
+  $('html').css('--field', safari ? '255, 255, 255' : '0, 0, 0')
+  $('html').css('--gap', safari ? '6px' : '5px')
+
 
   let url = '/tungs.txt'
   $.get(url, function (data) {
@@ -356,26 +373,6 @@ var lastText = ''
 var lastRender = 0
 var time = 0
 window.requestAnimationFrame(loop)
-
-
-
-
-
-let ua = navigator.userAgent.toLowerCase()
-let safari = ua.indexOf('safari') != -1 && !(ua.indexOf('chrome') > -1)
-
-// dev toggle override
-// safari = !safari
-
-$('html').css('--bg', safari ? '214, 216, 221' : '16, 16, 16')
-$('html').css('--fg', safari ? '214, 216, 221' : '240, 240, 240')
-$('html').css('--key', safari ? '255, 255, 255' : '48, 48, 48')
-$('html').css('--key-height', safari ? '40px' : '48px')
-$('html').css('--key-radius', safari ? '5px' : '8px')
-$('html').css('--txt', safari ? '0, 0, 0' : '255, 255, 255')
-$('html').css('--txt-size', safari ? '22px' : '26px')
-$('html').css('--field', safari ? '255, 255, 255' : '0, 0, 0')
-$('html').css('--gap', safari ? '6px' : '5px')
 
 window.addEventListener("beforeinstallprompt", (e) => {
   console.log('beforeinstallprompt')
