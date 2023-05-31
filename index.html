@@ -3,12 +3,13 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="interactive-widget=resizes-content, width=device-width, initial-scale=1.0, user-scalable=no">
+		<!-- <meta name="virtual-keyboard" content="resize-layout" /> future feature? -->
 		<meta name="google" content="notranslate" />
 
 		<link rel="apple-touch-icon" sizes="180x180" href="icons/tung.svg">
 		<link rel="icon" type="image/svg+xml" sizes="any" href="icons/tung.svg">
 		<link rel="manifest" href="manifest.webmanifest">
-		<meta name="description" content="Augment your keyboard with the symbols you need to type in your language.">
+		<meta name="description" content="Easily augment your system's keyboard">
 		<meta name="author" content="Ethan Merchant">
 		<title style="display: none;">tung-tap</title>
 		<link rel="stylesheet" href="style.css?v1">
@@ -18,23 +19,28 @@
 	</head>
 
 	<body>
-		
-		<!-- <div id="home" style="
+
+		<dialog id="intro" style="
 			display: flex;
 			flex-direction: column;
 			align-items: center;
 			gap: 10px;
-			padding: 10px 20px;
+			padding: 10px 32px;
 			padding-top: 20px;
-			background-color: #79394f;
+			background-color: rgb(var(--field));
+			border-width: 1px;
+			border-color: rgb(var(--txt));
+			border-radius: var(--key-radius);
+			font-size: 24px;
+			z-index: -1;
 		">
-			<div style="
+			<!-- <div style="
 				display: flex;
 				flex-direction: row;
 				align-items: center;
 				gap: 10px;
 			">
-				<img src="icons/tongue.png" style="
+				<img src="icons/tung.png" style="
 					width: 32px; height: 32px;
 					transform: translateY(-5px) rotate(-5deg);
 				">
@@ -43,30 +49,54 @@
 					margin-right: -40px;
 					transform: translate(-32px, 7px) rotate(-45deg) scale(0.8);
 				">
-				<h1 style="font-weight: unset; font-size: 24px; line-height: 24px; margin: 0; color: #fff">
-					TongueTap<span style="font-size: 14px; letter-spacing: 1px;">.app</span>
-				</h1>
-			</div>
+			</div> -->
+			<h1 style="font-weight: unset; font-size: 32px; line-height: 32px; margin: 0; color: rgb(var(--txt));">
+				tungtap<span style="font-size: 14px; letter-spacing: 1px;">.app</span>
+			</h1>
 			<p style="
-				font-size: 14px; 
+				font-size: 16px; 
 				line-height: 24px; 
-				font-style: italic; 
-				margin: 0; 
-				color: #fff;
+				
+				margin: 0;
+				color: rgb(var(--txt));
+				text-align: center;
 			">
-				Unicode key-swatch webapp for any cultures tongue!
+				easily augment your<br>
+				system's keyboard
 			</p>
-		</div> -->
+
+			<img onclick="intro.close()" class="icon-btn" src="/icons/start.svg" style="
+				outline: 2px solid white;
+				outline-offset: 6px;
+				border-radius: 18px;
+				margin: 16px;
+				mix-blend-mode: difference;
+			">
+
+			<div style="
+				position: fixed;
+				top: 100px;
+				right: 100px;
+				color: rgb(var(--txt));
+			">edit keys &nbsp; &nearrow;</div>
+
+			<div style="
+				position: fixed;
+				bottom: 150px;
+				color: rgb(var(--txt));
+			">&swarrow; &nbsp; tap keys &nbsp; &searrow;</div>
+
+		</dialog>
 
 		<div style="display: block; position: relative; background-color: white;">
-			<div hidden="true" id="tung" onclick="layout()" oninput="layout()" contenteditable="true" spellcheck="false" style="
+			<textarea hidden="true" id="tung" onclick="layout()" oninput="layout()" spellcheck="false" style="
   			user-select: text;
   			touch-action: none;
 				overflow: none;
 
 
 				white-space: pre;
-				width: auto;
+				width: 100%;
 				height: 100px;
 				padding: 10px;
 				font-family: 'DM Mono', monospace;
@@ -79,8 +109,8 @@
 
 
 				/* display: none; */
-			"></div>
-			<div onclick="copyToClipboard('#tung')" style="
+			"></textarea>
+			<div onclick="copyToClipboard('tung')" style="
 				cursor: pointer;
 				user-select: none;
 				position: absolute;
@@ -105,12 +135,16 @@
 			line-height: 40px;
 		">
 			<img onclick="$('#nav').toggle()" class="icon-btn" src="icons/tungs.svg">
-			<img onclick="TopToggle()" class="icon-btn" src="icons/tung.svg">
+			<div style="display: flex;">
+				<img onclick="intro.showModal()" class="icon-btn" src="icons/intro.svg">
+				<img onclick="TopToggle()" class="icon-btn" src="icons/tung.svg">
+			</div>
 		</div>
 
 		
 		<div style="flex-grow: 1; overflow: hidden; position: relative; background-color: white;">
-			<div id="text" onclick="$('#text').focus()" contenteditable="true" spellcheck="false" style="
+			<!-- onclick="$('#text').focus()" -->
+			<textarea id="text" spellcheck="false" style="
   			user-select: text;
 			  touch-action: pan-y;
 				overflow-y: scroll;
@@ -127,11 +161,9 @@
 				background-color: rgb(var(--field));
 				color: rgb(var(--txt));
 
-
-
 				/* padding-bottom: 600px; */
-			"></div>
-			<div onclick="copyToClipboard('#text')" style="
+			"></textarea>
+			<div onclick="copyToClipboard('text')" style="
 				cursor: pointer;
 				user-select: none;
 				position: absolute;
@@ -145,11 +177,11 @@
 		<div id="nav" hidden="true"></div>
 		
 		
-		<div id="keyboard" onclick="$('#text').focus()"></div>
+		<div id="keyboard" onclick="text.focus()"></div>
 
 
 		<!-- safari disclaimer (centered vertically) -->
-		<div id="disclaimer" hidden style="
+		<div id="disclaimer" style="
 			position: fixed;
 			top: 50%;
 			left: 50%;
@@ -169,7 +201,7 @@
 				<br>
 				Please use <span style="font-weight: bold;">Chrome</span> or <span style="font-weight: bold;">Firefox</span>.
 			</p>
-		
+		</div>
 	</body>
 	</html>
 	

@@ -1,3 +1,6 @@
+doc = document
+elbyid = (id) => doc.getElementById(id)
+
 var tung = ""
 
 var topToggle = false
@@ -18,11 +21,13 @@ $(document).ready(() => {
   if (localStorage.getItem('tung') === null || localStorage.getItem('tung') == "") {
     tung = "201C 2014 00D7 00B0 00B7 2022 221E 00B1 2023 201D"
     localStorage.setItem('tung', tung)
+
+    intro.showModal()
   }
   else {
     tung = localStorage.getItem('tung')
   }
-  $('#tung').html(tung)
+  elbyid('tung').value = tung
   layout()
 
   // persistent text
@@ -30,7 +35,7 @@ $(document).ready(() => {
     localStorage.setItem('text', "")
   }
   else {
-    $('#text').html(localStorage.getItem('text'))
+    elbyid('text').value = localStorage.getItem('text')
   }
 
 
@@ -152,11 +157,9 @@ function nav() {
     background-color: #ff79a1;
     color: #79394f;
   ">
-    Find more character codes in 
-    <a target="_blank" href="https://unicode.org/charts/">unicode.org</a>
-    reference charts  
-    or sketching in <a target="_blank" href="https://shapecatcher.com/">shapecatcher.com</a>
-    drawbox search!
+    Find more character codes 
+    in the <a target="_blank" href="https://unicode.org/charts/">unicode.org</a> reference charts  
+    or by sketching in a drawbox search at <a target="_blank" href="https://shapecatcher.com/">shapecatcher.com</a>!
   </div>`
 
   $('#nav').html(links + back + html)
@@ -175,7 +178,7 @@ var selected = null
 function select(index, pick) {
   let line = lines[index]
   if (pick) {
-    $('#tung').html(line.split(':')[1].trim())
+    elbyid('tung').value = line.split(':')[1].trim()
     layout()
     selected = index
   } else {
@@ -204,7 +207,7 @@ function getLines(divId) {
 
 function layout() {
   // keymap (tung is the proprietary name)
-  let tungText = $('#tung').html()  //.replace('\r\n', '\n')
+  let tungText = elbyid('tung').value  //.replace('\r\n', '\n')
   tungText = tungText.replace(/<div>/g, '\n').replace(/<\/div>/g, '')
   if (tung != tungText) {
     tung = tungText
@@ -246,21 +249,21 @@ function layout() {
     // override default behavior
     key.preventDefault()
 
-    // if text is not focused then set the cursor to the end of $('#text')
-    let textEl = $('#text')
-    if (document.activeElement != textEl[0] && window.getSelection().rangeCount == 0) {
-      let selection = window.getSelection()
-      let range = document.createRange()
-      range.selectNodeContents(textEl[0])
-      range.collapse(false)
-      selection.removeAllRanges()
-      selection.addRange(range)
-    }
-    textEl.focus()
+    // if text is not focused then set the cursor to the end of #text
+    // let textEl = elbyid('text')
+    // if (document.activeElement != textEl && window.getSelection().rangeCount == 0) {
+    //   let selection = window.getSelection()
+    //   let range = document.createRange()
+    //   range.selectNodeContents(textEl)
+    //   range.collapse(false)
+    //   selection.removeAllRanges()
+    //   selection.addRange(range)
+    // }
+    // textEl.focus()
   
-    // insert key character into contenteditable div $('#text') at cursor position
+    // insert key character at cursor position in textarea
     let char = String.fromCharCode("0x" + $(key.target).attr('charcode'))
-    insertTextAtCursor(char)
+    insertAtCursor(char)
   
 
     
@@ -269,36 +272,31 @@ function layout() {
   })
 }
 
-
-
-
-function insertTextAtCursor(text) {  
-  let selection = window.getSelection()
-  let range = selection.getRangeAt(0)
-  range.deleteContents()
-  let node = document.createTextNode(text)
-  range.insertNode(node)
-  range.setStartAfter(node)
-  range.setEndAfter(node)
-  selection.removeAllRanges()
-  selection.addRange(range)
+function insertAtCursor(text) {
+  const textarea = elbyid('text');
+  const scrollPos = textarea.scrollTop;
+  const caretPos = textarea.selectionStart;
+  const front = textarea.value.substring(0, caretPos);
+  const back = textarea.value.substring(textarea.selectionEnd, textarea.value.length);
+  textarea.value = front + text + back;
+  textarea.selectionStart = caretPos + text.length;
+  textarea.selectionEnd = caretPos + text.length;
+  textarea.scrollTop = scrollPos;
+  textarea.focus();
 }
 
 function copyToClipboard(id) {
-  var textEl = $(id)
+  var textarea = elbyid(id)
 
-  // select all the text on the contenteditable div textEl to show it was copied
-  let selection = window.getSelection()
-  let range = document.createRange()
-  range.selectNodeContents(textEl[0])
-  selection.removeAllRanges()
-  selection.addRange(range)
+  // select all the text in the textarea to show it was copied
+  // textarea.focus()
+  textarea.select()
 
   if (!navigator.clipboard) {
     console.error('Clipboard API not supported');
     return;
   }
-  navigator.clipboard.writeText(textEl.html())
+  navigator.clipboard.writeText(textarea.value)
     .then(() => {
       console.log('Text copied to clipboard')
     })
@@ -358,8 +356,9 @@ function loop(timestamp) {
 
 
   // check if need to backup the text
-  let text = $('#text').html()
+  let text = elbyid('text').value
   if (text != lastText) {
+    console.log(text)
     localStorage.setItem('text', text)
     lastText = text
   }

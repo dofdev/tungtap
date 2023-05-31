@@ -8,7 +8,7 @@
    version="1.1"
    id="svg8"
    inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
-   sodipodi:docname="tung.svg"
+   sodipodi:docname="intro.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -26,8 +26,8 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:zoom="11.2"
-     inkscape:cx="24.508929"
-     inkscape:cy="12.857143"
+     inkscape:cx="34.955357"
+     inkscape:cy="15.625"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -58,34 +58,23 @@
      id="layer1"
      transform="translate(0,-1090.5197)">
     <circle
-       style="fill:#ffffff;fill-opacity:1;stroke-width:1.44342;stroke-dasharray:none"
-       id="path217"
-       cx="3.315028"
-       cy="1102.2913"
-       r="2.2093179" />
+       style="opacity:1;fill:none;stroke:#ffffff;stroke-width:1.33746;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       id="path8463"
+       cx="21.428558"
+       cy="1106.5197"
+       r="9.5965786" />
+    <rect
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.768293;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       id="rect8569"
+       width="1.7928504"
+       height="6.1344175"
+       x="20.532131"
+       y="1105.6642" />
     <circle
-       style="fill:#ffffff;fill-opacity:1;stroke-width:1.44342;stroke-dasharray:none"
-       id="circle950"
-       cx="28.684973"
-       cy="1102.2913"
-       r="2.2093179" />
-    <circle
-       style="fill:#ffffff;fill-opacity:1;stroke-width:1.44342;stroke-dasharray:none"
-       id="circle952"
-       cx="15.999997"
-       cy="1102.2913"
-       r="2.2093179" />
-    <circle
-       style="fill:#ffffff;fill-opacity:1;stroke-width:1.44342;stroke-dasharray:none"
-       id="circle954"
-       cx="9.6575136"
-       cy="1111.1942"
-       r="2.2093179" />
-    <circle
-       style="fill:#ffffff;fill-opacity:1;stroke-width:1.44342;stroke-dasharray:none"
-       id="circle956"
-       cx="22.342487"
-       cy="1111.1942"
-       r="2.2093179" />
+       style="opacity:1;fill:none;stroke:#ffffff;stroke-width:1.36366;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       id="path8573"
+       cx="21.428558"
+       cy="1102.4698"
+       r="0.67988187" />
   </g>
 </svg>

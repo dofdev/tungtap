@@ -8,7 +8,7 @@
    version="1.1"
    id="svg8"
    inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
-   sodipodi:docname="tung.svg"
+   sodipodi:docname="start.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -57,35 +57,10 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(0,-1090.5197)">
-    <circle
-       style="fill:#ffffff;fill-opacity:1;stroke-width:1.44342;stroke-dasharray:none"
-       id="path217"
-       cx="3.315028"
-       cy="1102.2913"
-       r="2.2093179" />
-    <circle
-       style="fill:#ffffff;fill-opacity:1;stroke-width:1.44342;stroke-dasharray:none"
-       id="circle950"
-       cx="28.684973"
-       cy="1102.2913"
-       r="2.2093179" />
-    <circle
-       style="fill:#ffffff;fill-opacity:1;stroke-width:1.44342;stroke-dasharray:none"
-       id="circle952"
-       cx="15.999997"
-       cy="1102.2913"
-       r="2.2093179" />
-    <circle
-       style="fill:#ffffff;fill-opacity:1;stroke-width:1.44342;stroke-dasharray:none"
-       id="circle954"
-       cx="9.6575136"
-       cy="1111.1942"
-       r="2.2093179" />
-    <circle
-       style="fill:#ffffff;fill-opacity:1;stroke-width:1.44342;stroke-dasharray:none"
-       id="circle956"
-       cx="22.342487"
-       cy="1111.1942"
-       r="2.2093179" />
+    <path
+       id="rect314"
+       style="fill:#ffffff;stroke:#ffffff;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       d="m 8.4841806,1098.0389 16.9962374,8.4808 -16.9962374,8.4807 z"
+       sodipodi:nodetypes="cccc" />
   </g>
 </svg>
